@@ -12,13 +12,13 @@ class NewsTVCell: UITableViewCell {
     
     // MARK: - Properties
     var isDisclosed = false
-    var newsDescriptionLabelConstraints = [NSLayoutConstraint]()
-    var newsTitleLabelConstraints = [NSLayoutConstraint]()
-    var discloseInfoLabelConstraints = [NSLayoutConstraint]()
+    var bottomNewsTitleLabelConstraints: NSLayoutConstraint?
+    var bottomNewsDescriptionLabelConstraint: NSLayoutConstraint?
 
     // MARK: - UI elements
     var publisherImageView: UIImageView!
     var publisherLabel: UILabel!
+    var newsImageView: UIImageView!
     var publicationTimeLabel: UILabel!
     var newsTitleLabel: UILabel!
     var newsDescriptionLabel: UILabel!
@@ -33,12 +33,21 @@ class NewsTVCell: UITableViewCell {
         makePublisherImageView()
         makePublisherLabel()
         makePublicationTime()
-        makeNewsTitleLabel()
-        makeNewsDescriptionLabel()
+        makeNewsImageView()
         makeDiscloseInfoLabel()
+        makeNewsDescriptionLabel()
+        makeNewsTitleLabel()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        newsDescriptionLabel.alpha = 0
+        bottomNewsDescriptionLabelConstraint?.isActive = false
+        bottomNewsTitleLabelConstraints?.isActive = true
+        newsTitleLabel.alpha = 1
+        discloseInfoLabel.text = "Просмотреть"
     }
 }
