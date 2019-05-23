@@ -50,6 +50,27 @@ extension NewsTVCell {
         NSLayoutConstraint.activate(publisherLabelConstraints)
     }
     
+    func makeNewsImageView() {
+        newsImageView = UIImageView()
+        newsImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        newsImageView.image = UIImage(named: "NewsService")
+        
+        newsImageView.layer.cornerRadius = 5
+        newsImageView.layer.masksToBounds = true
+        newsImageView.layer.shouldRasterize = true
+        newsImageView.layer.rasterizationScale = UIScreen.main.nativeScale
+        
+        addSubview(newsImageView)
+        
+        let newsImageViewConstraints = [
+            newsImageView.topAnchor.constraint(equalTo: publisherLabel.bottomAnchor, constant: 2),
+            newsImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            newsImageView.heightAnchor.constraint(equalToConstant: 40),
+            newsImageView.widthAnchor.constraint(equalTo: newsImageView.heightAnchor)]
+        NSLayoutConstraint.activate(newsImageViewConstraints)
+    }
+    
     func makePublicationTime() {
         publicationTimeLabel = UILabel()
         publicationTimeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -81,10 +102,12 @@ extension NewsTVCell {
         
         addSubview(newsTitleLabel)
         
-        newsTitleLabelConstraints = [
+        bottomNewsTitleLabelConstraints = newsTitleLabel.bottomAnchor.constraint(equalTo: discloseInfoLabel.topAnchor, constant: -10)
+        bottomNewsTitleLabelConstraints?.isActive = true
+        let newsTitleLabelConstraints = [
             newsTitleLabel.topAnchor.constraint(equalTo: publisherLabel.bottomAnchor, constant: 2),
             newsTitleLabel.leadingAnchor.constraint(equalTo: publisherLabel.leadingAnchor),
-            newsTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)]
+            newsTitleLabel.trailingAnchor.constraint(equalTo: newsImageView.leadingAnchor, constant: -10)]
         NSLayoutConstraint.activate(newsTitleLabelConstraints)
     }
     
@@ -92,22 +115,22 @@ extension NewsTVCell {
         newsDescriptionLabel = UILabel()
         newsDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        newsDescriptionLabel.isHidden = true
         newsDescriptionLabel.text = #"Лидерами по высотности жилой застройки среди российских городов оказались четыре населенных пункта Московской области — Котельники, Красногорск, Одинцово и Реутов. Средняя высотность новостроек в этих городах в мае 2019-го составила 25 этажей. “Серебро” получил Долгопрудный с показателем в 23 этажа."#
         newsDescriptionLabel.font = .systemFont(ofSize: 16)
         newsDescriptionLabel.textColor = .white
         newsDescriptionLabel.alpha = 0.8
         newsDescriptionLabel.textAlignment = .left
         newsDescriptionLabel.numberOfLines = 0
+        newsDescriptionLabel.alpha = 0
         
         addSubview(newsDescriptionLabel)
         
-        newsDescriptionLabelConstraints = [
+        bottomNewsDescriptionLabelConstraint = newsDescriptionLabel.bottomAnchor.constraint(equalTo: discloseInfoLabel.topAnchor, constant: -10)
+        let newsDescriptionLabelConstraints = [
             newsDescriptionLabel.topAnchor.constraint(equalTo: publisherLabel.bottomAnchor, constant: 2),
             newsDescriptionLabel.leadingAnchor.constraint(equalTo: publisherLabel.leadingAnchor),
-            newsDescriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            newsDescriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)]
-//        NSLayoutConstraint.activate(newsDescriptionLabelConstraints)
+            newsDescriptionLabel.trailingAnchor.constraint(equalTo: newsImageView.leadingAnchor, constant: -10)]
+        NSLayoutConstraint.activate(newsDescriptionLabelConstraints)
     }
     
     func makeDiscloseInfoLabel() {
@@ -122,9 +145,8 @@ extension NewsTVCell {
         
         addSubview(discloseInfoLabel)
         
-        discloseInfoLabelConstraints = [
-            discloseInfoLabel.topAnchor.constraint(equalTo: newsTitleLabel.bottomAnchor, constant: 10),
-            discloseInfoLabel.leadingAnchor.constraint(equalTo: newsTitleLabel.leadingAnchor),
+        let discloseInfoLabelConstraints = [
+            discloseInfoLabel.leadingAnchor.constraint(equalTo: publisherLabel.leadingAnchor),
             discloseInfoLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)]
         NSLayoutConstraint.activate(discloseInfoLabelConstraints)
     }
@@ -133,21 +155,29 @@ extension NewsTVCell {
         print("#function")
         
         if !isDisclosed {
-            NSLayoutConstraint.deactivate(newsTitleLabelConstraints)
-            newsTitleLabel.isHidden = true
-            NSLayoutConstraint.deactivate(discloseInfoLabelConstraints)
-            discloseInfoLabel.isHidden = true
-            
-            NSLayoutConstraint.activate(newsDescriptionLabelConstraints)
-            newsDescriptionLabel.isHidden = false
+            print(!isDisclosed)
+            UILabel.animate(withDuration: 0.25, animations: { [unowned self] in
+                self.newsTitleLabel.alpha = 0
+                self.bottomNewsTitleLabelConstraints?.isActive = false
+                self.bottomNewsDescriptionLabelConstraint?.isActive = true
+            }) { [unowned self] (_) in
+                self.discloseInfoLabel.text = "Скрыть"
+                UILabel.animate(withDuration: 0.5, animations: {
+                    self.newsDescriptionLabel.alpha = 1
+                })
+            }
         } else {
-            NSLayoutConstraint.deactivate(newsDescriptionLabelConstraints)
-            newsDescriptionLabel.isHidden = true
-            
-            NSLayoutConstraint.activate(discloseInfoLabelConstraints)
-            discloseInfoLabel.isHidden = false
-            NSLayoutConstraint.activate(newsTitleLabelConstraints)
-            newsTitleLabel.isHidden = false
+            print(!isDisclosed)
+            UILabel.animate(withDuration: 0.25, animations: { [unowned self] in
+                self.newsDescriptionLabel.alpha = 0
+                self.bottomNewsDescriptionLabelConstraint?.isActive = false
+                self.bottomNewsTitleLabelConstraints?.isActive = true
+            }) { [unowned self] (_) in
+                self.discloseInfoLabel.text = "Просмотреть"
+                UILabel.animate(withDuration: 0.5, animations: {
+                    self.newsTitleLabel.alpha = 1
+                })
+            }
         }
         
         isDisclosed = !isDisclosed

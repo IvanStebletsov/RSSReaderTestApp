@@ -25,8 +25,11 @@ extension NewsFeedVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function, indexPath.row)
         selectedRow = indexPath
+        let cell = tableView.cellForRow(at: indexPath) as! NewsTVCell
         
-        tableView.reloadRows(at: [selectedRow!], with: .automatic)
+        tableView.beginUpdates()
+        cell.discloseNewsDescription()
+        tableView.endUpdates()
     }
     
 }
