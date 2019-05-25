@@ -12,23 +12,23 @@ extension NewsFeedVC: UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - UITableViewDataSource / Delegate protocols
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(#function, indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? NewsTVCell else { return UITableViewCell() }
+        
+        cell.set(viewModel: self.viewModel.viewModelForCell(at: indexPath))
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function, indexPath.row)
         selectedRow = indexPath
-        let cell = tableView.cellForRow(at: indexPath) as! NewsTVCell
+        let selectedCell = tableView.cellForRow(at: indexPath) as! NewsTVCell
         
         tableView.beginUpdates()
-        cell.discloseNewsDescription()
+        selectedCell.discloseNewsDescription()
         tableView.endUpdates()
     }
     
