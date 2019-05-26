@@ -21,10 +21,6 @@ class NewsTVCellVM: NewsTVCellVMProtocol {
     }
 
     // MARK: - NewsTVCellVMProtocol methods
-    func publisherImage() {
-        
-    }
-    
     func publisher() -> String {
         return news.publisher
     }

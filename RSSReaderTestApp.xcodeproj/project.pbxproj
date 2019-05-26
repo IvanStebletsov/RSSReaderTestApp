@@ -10,11 +10,13 @@
 		262AE7FC229AC23200104BDB /* FetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262AE7FB229AC23200104BDB /* FetchOperation.swift */; };
 		262AE7FE229AD30600104BDB /* ParseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262AE7FD229AD30600104BDB /* ParseOperation.swift */; };
 		262AE802229B287A00104BDB /* RSSReaderIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 262AE801229B287900104BDB /* RSSReaderIcon.png */; };
+		262AE804229B3B1900104BDB /* NewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262AE803229B3B1900104BDB /* NewsTests.swift */; };
+		262AE806229B3D0B00104BDB /* NewsFeedVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262AE805229B3D0B00104BDB /* NewsFeedVMTests.swift */; };
+		262AE808229B402C00104BDB /* NewsTVCellVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262AE807229B402C00104BDB /* NewsTVCellVMTests.swift */; };
 		267CF48A2295D4F300FFB66A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CF4892295D4F300FFB66A /* AppDelegate.swift */; };
 		267CF48C2295D4F300FFB66A /* NewsFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CF48B2295D4F300FFB66A /* NewsFeedVC.swift */; };
 		267CF4912295D4F700FFB66A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 267CF4902295D4F700FFB66A /* Assets.xcassets */; };
 		267CF4942295D4F700FFB66A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 267CF4922295D4F700FFB66A /* LaunchScreen.storyboard */; };
-		267CF49F2295D4F700FFB66A /* RSSReaderTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CF49E2295D4F700FFB66A /* RSSReaderTestAppTests.swift */; };
 		267CF4B02295DACE00FFB66A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CF4AF2295DACE00FFB66A /* NetworkService.swift */; };
 		267CF4B32295DB0000FFB66A /* NetworkingServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CF4B22295DB0000FFB66A /* NetworkingServiceProtocol.swift */; };
 		267CF4B52295DC9200FFB66A /* NewsFeedVMProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CF4B42295DC9200FFB66A /* NewsFeedVMProtocol.swift */; };
@@ -51,6 +53,9 @@
 		262AE7FB229AC23200104BDB /* FetchOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchOperation.swift; sourceTree = "<group>"; };
 		262AE7FD229AD30600104BDB /* ParseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseOperation.swift; sourceTree = "<group>"; };
 		262AE801229B287900104BDB /* RSSReaderIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RSSReaderIcon.png; sourceTree = "<group>"; };
+		262AE803229B3B1900104BDB /* NewsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTests.swift; sourceTree = "<group>"; };
+		262AE805229B3D0B00104BDB /* NewsFeedVMTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedVMTests.swift; sourceTree = "<group>"; };
+		262AE807229B402C00104BDB /* NewsTVCellVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTVCellVMTests.swift; sourceTree = "<group>"; };
 		267CF4862295D4F300FFB66A /* RSSReaderTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReaderTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		267CF4892295D4F300FFB66A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = RSSReaderTestApp/AppDelegate/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		267CF48B2295D4F300FFB66A /* NewsFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsFeedVC.swift; path = RSSReaderTestApp/View/NewsFeedVC/NewsFeedVC.swift; sourceTree = SOURCE_ROOT; };
@@ -58,7 +63,6 @@
 		267CF4932295D4F700FFB66A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		267CF4952295D4F700FFB66A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		267CF49A2295D4F700FFB66A /* RSSReaderTestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSReaderTestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		267CF49E2295D4F700FFB66A /* RSSReaderTestAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSReaderTestAppTests.swift; sourceTree = "<group>"; };
 		267CF4A02295D4F700FFB66A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		267CF4AF2295DACE00FFB66A /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		267CF4B22295DB0000FFB66A /* NetworkingServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingServiceProtocol.swift; sourceTree = "<group>"; };
@@ -145,7 +149,9 @@
 		267CF49D2295D4F700FFB66A /* RSSReaderTestAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				267CF49E2295D4F700FFB66A /* RSSReaderTestAppTests.swift */,
+				262AE803229B3B1900104BDB /* NewsTests.swift */,
+				262AE805229B3D0B00104BDB /* NewsFeedVMTests.swift */,
+				262AE807229B402C00104BDB /* NewsTVCellVMTests.swift */,
 				267CF4A02295D4F700FFB66A /* Info.plist */,
 			);
 			path = RSSReaderTestAppTests;
@@ -393,7 +399,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				267CF49F2295D4F700FFB66A /* RSSReaderTestAppTests.swift in Sources */,
+				262AE804229B3B1900104BDB /* NewsTests.swift in Sources */,
+				262AE806229B3D0B00104BDB /* NewsFeedVMTests.swift in Sources */,
+				262AE808229B402C00104BDB /* NewsTVCellVMTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

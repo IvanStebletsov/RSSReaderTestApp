@@ -10,8 +10,6 @@ import Foundation
 
 protocol NewsTVCellVMProtocol {
     
-    func publisherImage()
-    
     func publisher() -> String
     
     func newsImage(_ completion: @escaping (Data?) -> ())

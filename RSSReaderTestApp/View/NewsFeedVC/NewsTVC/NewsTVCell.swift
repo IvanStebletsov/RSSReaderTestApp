@@ -11,7 +11,7 @@ import UIKit
 class NewsTVCell: UITableViewCell {
     
     // MARK: - Properties
-    var viewModel: NewsTVCellVMProtocol!
+    private var viewModel: NewsTVCellVMProtocol!
     var isDisclosed = false
     var bottomNewsTitleLabelConstraints: NSLayoutConstraint?
     var bottomNewsDescriptionLabelConstraint: NSLayoutConstraint?
