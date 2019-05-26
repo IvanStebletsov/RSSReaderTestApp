@@ -9,7 +9,7 @@
 import UIKit
 
 extension NewsFeedVC {
-
+    
     // MARK: - UI Configuration
     func makeNewsFeedTableView() {
         newsFeedTableView = UITableView()
@@ -18,10 +18,11 @@ extension NewsFeedVC {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1405375302, green: 0.1605641544, blue: 0.1772543788, alpha: 1)
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1881980896, green: 0.1881759465, blue: 0.1922885776, alpha: 1)
         navigationController?.navigationBar.barStyle = .black
-        navigationItem.title = "Today's News"
+        navigationItem.title = "Новости"
         
+        newsFeedTableView.separatorColor = .clear
         newsFeedTableView.backgroundColor = .clear
         newsFeedTableView.separatorStyle = .singleLine
         newsFeedTableView.register(NewsTVCell.self, forCellReuseIdentifier: cellId)
@@ -63,9 +64,69 @@ extension NewsFeedVC {
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        blurEffectView.layer.shouldRasterize = true
-//        blurEffectView.layer.rasterizationScale = UIScreen.main.nativeScale
         backgroundImageView.addSubview(blurEffectView)
+    }
+    
+    func makeEmptyNewsFeedLabel() {
+        emptyFeedView = UIView()
+        emptyFeedView.translatesAutoresizingMaskIntoConstraints = false
+        let text = UILabel()
+        text.translatesAutoresizingMaskIntoConstraints = false
+        emptyFeedView.backgroundColor = #colorLiteral(red: 0.1881980896, green: 0.1881759465, blue: 0.1922885776, alpha: 1)
+        emptyFeedView.alpha = 0.7
+        emptyFeedView.layer.masksToBounds = true
+        emptyFeedView.layer.cornerRadius = 15
+        text.textAlignment = .center
+        text.numberOfLines = 0
+        text.text = "Новостей нет"
+        text.textColor = #colorLiteral(red: 0.4665635824, green: 0.46639961, blue: 0.4829245806, alpha: 1)
+        
+        newsFeedTableView.addSubview(emptyFeedView)
+        emptyFeedView.addSubview(text)
+        
+        let emptyFeedViewConstraints = [
+            emptyFeedView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyFeedView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            text.leadingAnchor.constraint(equalTo: emptyFeedView.leadingAnchor, constant: 15),
+            text.trailingAnchor.constraint(equalTo: emptyFeedView.trailingAnchor, constant: -15),
+            text.topAnchor.constraint(equalTo: emptyFeedView.topAnchor, constant: 10),
+            text.bottomAnchor.constraint(equalTo: emptyFeedView.bottomAnchor, constant: -10)]
+        NSLayoutConstraint.activate(emptyFeedViewConstraints)
+    }
+    
+    func makeRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
+        refreshControl.attributedTitle = NSAttributedString(string: "Загрузка...", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        refreshControl.addTarget(self, action: #selector(refreshNewsFeed), for: UIControl.Event.valueChanged)
+        newsFeedTableView.addSubview(refreshControl)
+    }
+    
+    @objc func refreshNewsFeed(sender: UIControl) {
+        viewModel.fetchData { [weak self] (response) in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                if let response = response {
+                    self.presentAlertController(response)
+                    self.emptyFeedView.isHidden = false
+                } else {
+                    self.newsFeedTableView.reloadData()
+                    self.emptyFeedView.isHidden = true
+                }
+                self.refreshControl.endRefreshing()
+            }
+        }
+    }
+    
+    func presentAlertController(_ error: DataResponseError) {
+        let alertController = UIAlertController(title: error.reason, message: nil, preferredStyle: .alert)
+        let okAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAlertAction)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alertController, animated: true, completion: nil)
+        }
     }
     
 }

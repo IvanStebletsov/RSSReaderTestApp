@@ -10,6 +10,10 @@ import Foundation
 
 protocol NewsFeedVMProtocol: class {
     
+    func fetchData(_ completion: @escaping (DataResponseError?) -> ())
     
+    func numberOfRows() -> Int
+    
+    func viewModelForCell(at indexPath: IndexPath) -> NewsTVCellVM
     
 }
