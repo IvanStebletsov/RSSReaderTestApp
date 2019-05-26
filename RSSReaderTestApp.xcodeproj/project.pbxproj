@@ -69,7 +69,7 @@
 		267CF4B42295DC9200FFB66A /* NewsFeedVMProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedVMProtocol.swift; sourceTree = "<group>"; };
 		267CF4B62295DE0900FFB66A /* NewsFeedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedVM.swift; sourceTree = "<group>"; };
 		267CF4B82295E02A00FFB66A /* NewsFeedVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedVCExtension.swift; sourceTree = "<group>"; };
-		267CF4BA2295E17600FFB66A /* NewsFeedTVProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsFeedTVProtocols.swift; path = ../NewsFeedTVProtocols.swift; sourceTree = "<group>"; };
+		267CF4BA2295E17600FFB66A /* NewsFeedTVProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTVProtocols.swift; sourceTree = "<group>"; };
 		267CF4BE2295EC8C00FFB66A /* NewsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTVCell.swift; sourceTree = "<group>"; };
 		267CF4C22295EED800FFB66A /* NewsTVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTVCExtension.swift; sourceTree = "<group>"; };
 		26D883C8229888B20074EB3D /* HTTPURLResponseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPURLResponseExtension.swift; sourceTree = "<group>"; };
