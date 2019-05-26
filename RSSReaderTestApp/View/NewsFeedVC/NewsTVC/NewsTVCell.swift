@@ -54,8 +54,11 @@ class NewsTVCell: UITableViewCell {
         
         viewModel.newsImage { [weak self] (data) in
             guard let self = self, let data = data else { return }
-            DispatchQueue.main.async {
-                self.newsImageView.image = UIImage(data: data)
+            DispatchQueue.global(qos: .userInitiated).async {
+                guard let image = UIImage(data: data) else { return }
+                DispatchQueue.main.async {
+                    self.newsImageView.image = image
+                }
             }
         }
     }

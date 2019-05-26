@@ -9,7 +9,7 @@
 import UIKit
 
 extension NewsFeedVC {
-
+    
     // MARK: - UI Configuration
     func makeNewsFeedTableView() {
         newsFeedTableView = UITableView()
@@ -22,7 +22,7 @@ extension NewsFeedVC {
         navigationController?.navigationBar.barStyle = .black
         navigationItem.title = "Новости"
         
-        newsFeedTableView.isHidden = true
+        newsFeedTableView.separatorColor = .clear
         newsFeedTableView.backgroundColor = .clear
         newsFeedTableView.separatorStyle = .singleLine
         newsFeedTableView.register(NewsTVCell.self, forCellReuseIdentifier: cellId)
@@ -67,7 +67,7 @@ extension NewsFeedVC {
         backgroundImageView.addSubview(blurEffectView)
     }
     
-    func makeEmptyStoreLabel() {
+    func makeEmptyNewsFeedLabel() {
         emptyFeedView = UIView()
         emptyFeedView.translatesAutoresizingMaskIntoConstraints = false
         let text = UILabel()
@@ -80,9 +80,8 @@ extension NewsFeedVC {
         text.numberOfLines = 0
         text.text = "Новостей нет"
         text.textColor = #colorLiteral(red: 0.4665635824, green: 0.46639961, blue: 0.4829245806, alpha: 1)
-        emptyFeedView.isHidden = true
         
-        view.addSubview(emptyFeedView)
+        newsFeedTableView.addSubview(emptyFeedView)
         emptyFeedView.addSubview(text)
         
         let emptyFeedViewConstraints = [
@@ -104,18 +103,15 @@ extension NewsFeedVC {
         newsFeedTableView.addSubview(refreshControl)
     }
     
-    @objc func refreshNewsFeed() {
+    @objc func refreshNewsFeed(sender: UIControl) {
         viewModel.fetchData { [weak self] (response) in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 if let response = response {
                     self.presentAlertController(response)
-                    self.newsFeedTableView.isHidden = true
                     self.emptyFeedView.isHidden = false
-                    
                 } else {
                     self.newsFeedTableView.reloadData()
-                    self.newsFeedTableView.isHidden = false
                     self.emptyFeedView.isHidden = true
                 }
                 self.refreshControl.endRefreshing()

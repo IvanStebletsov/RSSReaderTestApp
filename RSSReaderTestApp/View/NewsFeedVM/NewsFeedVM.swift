@@ -13,10 +13,9 @@ class NewsFeedVM: NewsFeedVMProtocol {
     //MARK: - Properties
     var networkService: Networking!
     var dataStorage: DataStorage!
-    let parser = ParseService()
     let urls = ["https://www.gazeta.ru/export/rss/lenta.xml", "http://lenta.ru/rss"]
     var fetchedNews = [News]()
-    var iterations = 0
+    let operationQueue = OperationQueue()
     
     // MARK: - Initialization
     init(networkService: Networking, dataStorageService: DataStorage) {
@@ -30,34 +29,29 @@ class NewsFeedVM: NewsFeedVMProtocol {
     }
     
     func fetchData(_ completion: @escaping (DataResponseError?) -> ()) {
-        dataStorage.resetData()
         fetchedNews.removeAll()
-        iterations = 0
         
         for url in urls {
-            networkService.fetchData(from: url) { [weak self] (result, response) in
-                guard let self = self else { return }
-                
+            let fetchOperation = FetchOperation(url: url, networkService: self.networkService)
+            fetchOperation.completionBlock = { [weak self] in
+                guard let self = self, let result = fetchOperation.result?.0 else { return }
                 switch result {
                 case .success(let data):
-                    self.parser.parseNews(from: data, completion: { [weak self] (news) in
-                        guard let self = self else { return }
-
-                        self.fetchedNews += news
+                    let parseOperation = ParseOperation(data: data)
+                    parseOperation.completionBlock = {
+                        self.fetchedNews += parseOperation.news
                         self.dataStorage.saveData(self.fetchedNews)
-                        
-                        if self.iterations != 0 {
-                            completion(nil)
-                        } else {
-                            self.iterations += 1
-                        }
-                    })
+                        completion(nil)
+                    }
+                    sleep(1)
+                    self.operationQueue.addOperation(parseOperation)
                 case .failure(.network):
                     completion(DataResponseError.network)
                 case .failure(.connection):
                     completion(DataResponseError.connection)
                 }
             }
+            operationQueue.addOperation(fetchOperation)
         }
     }
     

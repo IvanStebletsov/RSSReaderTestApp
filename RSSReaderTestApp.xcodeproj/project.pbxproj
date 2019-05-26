@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		262AE7FC229AC23200104BDB /* FetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262AE7FB229AC23200104BDB /* FetchOperation.swift */; };
+		262AE7FE229AD30600104BDB /* ParseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262AE7FD229AD30600104BDB /* ParseOperation.swift */; };
+		262AE802229B287A00104BDB /* RSSReaderIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 262AE801229B287900104BDB /* RSSReaderIcon.png */; };
 		267CF48A2295D4F300FFB66A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CF4892295D4F300FFB66A /* AppDelegate.swift */; };
 		267CF48C2295D4F300FFB66A /* NewsFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CF48B2295D4F300FFB66A /* NewsFeedVC.swift */; };
 		267CF4912295D4F700FFB66A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 267CF4902295D4F700FFB66A /* Assets.xcassets */; };
@@ -45,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		262AE7FB229AC23200104BDB /* FetchOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchOperation.swift; sourceTree = "<group>"; };
+		262AE7FD229AD30600104BDB /* ParseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseOperation.swift; sourceTree = "<group>"; };
+		262AE801229B287900104BDB /* RSSReaderIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RSSReaderIcon.png; sourceTree = "<group>"; };
 		267CF4862295D4F300FFB66A /* RSSReaderTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReaderTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		267CF4892295D4F300FFB66A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = RSSReaderTestApp/AppDelegate/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		267CF48B2295D4F300FFB66A /* NewsFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsFeedVC.swift; path = RSSReaderTestApp/View/NewsFeedVC/NewsFeedVC.swift; sourceTree = SOURCE_ROOT; };
@@ -94,6 +100,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		262AE7FA229AC21700104BDB /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				262AE7FB229AC23200104BDB /* FetchOperation.swift */,
+				262AE7FD229AD30600104BDB /* ParseOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
 		267CF47D2295D4F300FFB66A = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +136,7 @@
 				267CF4AA2295D70700FFB66A /* Model */,
 				267CF4AB2295D72D00FFB66A /* View */,
 				267CF4AE2295DA5100FFB66A /* Services */,
+				262AE7FA229AC21700104BDB /* Operations */,
 				267CF4B12295DAE400FFB66A /* Protocols */,
 			);
 			path = RSSReaderTestApp;
@@ -171,6 +187,7 @@
 		267CF4AD2295D76900FFB66A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				262AE801229B287900104BDB /* RSSReaderIcon.png */,
 				267CF4902295D4F700FFB66A /* Assets.xcassets */,
 				267CF4922295D4F700FFB66A /* LaunchScreen.storyboard */,
 				267CF4952295D4F700FFB66A /* Info.plist */,
@@ -325,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				262AE802229B287A00104BDB /* RSSReaderIcon.png in Resources */,
 				267CF4942295D4F700FFB66A /* LaunchScreen.storyboard in Resources */,
 				267CF4912295D4F700FFB66A /* Assets.xcassets in Resources */,
 			);
@@ -347,6 +365,7 @@
 				267CF4B92295E02A00FFB66A /* NewsFeedVCExtension.swift in Sources */,
 				267CF48C2295D4F300FFB66A /* NewsFeedVC.swift in Sources */,
 				267CF4B72295DE0900FFB66A /* NewsFeedVM.swift in Sources */,
+				262AE7FE229AD30600104BDB /* ParseOperation.swift in Sources */,
 				26D883D52298920C0074EB3D /* DataStorageProtocol.swift in Sources */,
 				267CF4B32295DB0000FFB66A /* NetworkingServiceProtocol.swift in Sources */,
 				26D883CF229890930074EB3D /* News.swift in Sources */,
@@ -365,6 +384,7 @@
 				26D883D32298919D0074EB3D /* ParserProtocol.swift in Sources */,
 				26D883D92298979E0074EB3D /* StringExtension.swift in Sources */,
 				26D883CA229888B20074EB3D /* HTTPURLResponseExtension.swift in Sources */,
+				262AE7FC229AC23200104BDB /* FetchOperation.swift in Sources */,
 				26D883D72298933B0074EB3D /* NewsElements.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
