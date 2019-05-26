@@ -9,20 +9,22 @@
 import Foundation
 
 class NetworkService: Networking {
-    
-    // MARK: - Properties
 
-    
     // MARK: - Methods
-    func fetchNewsFeed(on url: String, completion: @escaping () -> ()) {
-        
+    func fetchData(from url: String, completion: @escaping ((Result<Data, DataResponseError>, URLResponse?) -> ())) {
         
         guard let url = URL(string: url) else { return }
-
-        let urlSession = URLSession.shared
         
-        urlSession.dataTask(with: url) { (data, response, error) in
-
+        let session = URLSession.shared
+        
+        session.dataTask(with: url) { (data, response, error) in
+            if error != nil { completion(Result.failure(.connection), nil) }
+            
+            guard let httpResponse = response as? HTTPURLResponse, let data = data else { return }
+            
+            guard httpResponse.hasSuccessStatusCode else { completion(Result.failure(.network), response); return }
+            
+            completion(Result.success(data), response)
             
             }.resume()
     }

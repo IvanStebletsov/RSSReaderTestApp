@@ -15,8 +15,6 @@ extension NewsTVCell {
         publisherImageView = UIImageView()
         publisherImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        publisherImageView.image = UIImage(named: "LentaruLogo")
-        
         publisherImageView.layer.cornerRadius = 5
         publisherImageView.layer.masksToBounds = true
         publisherImageView.layer.shouldRasterize = true
@@ -36,8 +34,7 @@ extension NewsTVCell {
         publisherLabel = UILabel()
         publisherLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        publisherLabel.text = "Lenta.ru"
-        publisherLabel.font = .boldSystemFont(ofSize: 18)
+        publisherLabel.font = .boldSystemFont(ofSize: 16)
         publisherLabel.textAlignment = .left
         publisherLabel.textColor = .white
         
@@ -54,8 +51,8 @@ extension NewsTVCell {
         newsImageView = UIImageView()
         newsImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        newsImageView.image = UIImage(named: "NewsService")
-        
+        newsImageView.image = UIImage(named: "newsImageMock")
+        newsImageView.contentMode = .scaleAspectFill
         newsImageView.layer.cornerRadius = 5
         newsImageView.layer.masksToBounds = true
         newsImageView.layer.shouldRasterize = true
@@ -75,7 +72,6 @@ extension NewsTVCell {
         publicationTimeLabel = UILabel()
         publicationTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        publicationTimeLabel.text = "сейчас"
         publicationTimeLabel.font = .boldSystemFont(ofSize: 12)
         publicationTimeLabel.textColor = .white
         publicationTimeLabel.alpha = 0.4
@@ -92,9 +88,8 @@ extension NewsTVCell {
     func makeNewsTitleLabel() {
         newsTitleLabel = UILabel()
         newsTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        newsTitleLabel.text = "Самую высотную в России застройку обнаружили в Подмосковье"
-        newsTitleLabel.font = .systemFont(ofSize: 16)
+
+        newsTitleLabel.font = .systemFont(ofSize: 14)
         newsTitleLabel.textColor = .white
         newsTitleLabel.alpha = 0.8
         newsTitleLabel.textAlignment = .left
@@ -115,8 +110,7 @@ extension NewsTVCell {
         newsDescriptionLabel = UILabel()
         newsDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        newsDescriptionLabel.text = #"Лидерами по высотности жилой застройки среди российских городов оказались четыре населенных пункта Московской области — Котельники, Красногорск, Одинцово и Реутов. Средняя высотность новостроек в этих городах в мае 2019-го составила 25 этажей. “Серебро” получил Долгопрудный с показателем в 23 этажа."#
-        newsDescriptionLabel.font = .systemFont(ofSize: 16)
+        newsDescriptionLabel.font = .systemFont(ofSize: 14)
         newsDescriptionLabel.textColor = .white
         newsDescriptionLabel.alpha = 0.8
         newsDescriptionLabel.textAlignment = .left
@@ -152,10 +146,7 @@ extension NewsTVCell {
     }
     
     func discloseNewsDescription() {
-        print("#function")
-        
         if !isDisclosed {
-            print(!isDisclosed)
             UILabel.animate(withDuration: 0.25, animations: { [unowned self] in
                 self.newsTitleLabel.alpha = 0
                 self.bottomNewsTitleLabelConstraints?.isActive = false
@@ -167,7 +158,6 @@ extension NewsTVCell {
                 })
             }
         } else {
-            print(!isDisclosed)
             UILabel.animate(withDuration: 0.25, animations: { [unowned self] in
                 self.newsDescriptionLabel.alpha = 0
                 self.bottomNewsDescriptionLabelConstraint?.isActive = false

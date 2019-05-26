@@ -10,10 +10,6 @@ import Foundation
 
 protocol Networking: class {
     
-//    var requestLanguage: String { get set }
-//
-//    func fetchGitReposFor(_ query: String, forPageNumber pageNumber: Int, completion: @escaping ((Result<[GitRepo], DataResponseError>, URLResponse?) -> ()))
-//
-//    func fetchTotalNumbersOfRepos(_ query: String, completion: @escaping (URLResponse?) -> ())
+    func fetchData(from url: String, completion: @escaping ((Result<Data, DataResponseError>, URLResponse?) -> ()))
     
 }

@@ -19,6 +19,9 @@ class NewsFeedVC: UIViewController {
     var newsFeedTableView: UITableView!
     var backgroundImageView: UIImageView!
     var screenTitleLabel: UILabel!
+    var emptyFeedView: UIView!
+    var refreshControl: UIRefreshControl!
+    var activityIndocatorView: UIActivityIndicatorView!
     
     // MARK: - Initialization
     init(viewModel: NewsFeedVMProtocol) {
@@ -33,10 +36,26 @@ class NewsFeedVC: UIViewController {
     // MARK: - Life cicle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         makeBackgroundImageView()
         makeNewsFeedTableView()
-    }
+        makeEmptyNewsFeedLabel()
+        makeRefreshControl()
 
+        viewModel.fetchData { [weak self] (response) in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                if let response = response {
+                    self.presentAlertController(response)
+                    self.newsFeedTableView.separatorColor = .clear
+                    self.emptyFeedView.isHidden = false
+                } else {
+                    self.newsFeedTableView.reloadData()
+                    self.newsFeedTableView.separatorColor = #colorLiteral(red: 0.4470869303, green: 0.4430034161, blue: 0.4511971474, alpha: 1)
+                    self.emptyFeedView.isHidden = true
+                }
+            }
+        }
+    }
+    
 }
 
