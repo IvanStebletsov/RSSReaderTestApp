@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		262AE7FC229AC23200104BDB /* FetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262AE7FB229AC23200104BDB /* FetchOperation.swift */; };
-		262AE7FE229AD30600104BDB /* ParseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262AE7FD229AD30600104BDB /* ParseOperation.swift */; };
 		262AE802229B287A00104BDB /* RSSReaderIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 262AE801229B287900104BDB /* RSSReaderIcon.png */; };
 		262AE804229B3B1900104BDB /* NewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262AE803229B3B1900104BDB /* NewsTests.swift */; };
 		262AE806229B3D0B00104BDB /* NewsFeedVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262AE805229B3D0B00104BDB /* NewsFeedVMTests.swift */; };
@@ -51,7 +50,6 @@
 
 /* Begin PBXFileReference section */
 		262AE7FB229AC23200104BDB /* FetchOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchOperation.swift; sourceTree = "<group>"; };
-		262AE7FD229AD30600104BDB /* ParseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseOperation.swift; sourceTree = "<group>"; };
 		262AE801229B287900104BDB /* RSSReaderIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RSSReaderIcon.png; sourceTree = "<group>"; };
 		262AE803229B3B1900104BDB /* NewsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTests.swift; sourceTree = "<group>"; };
 		262AE805229B3D0B00104BDB /* NewsFeedVMTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedVMTests.swift; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				262AE7FB229AC23200104BDB /* FetchOperation.swift */,
-				262AE7FD229AD30600104BDB /* ParseOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -371,7 +368,6 @@
 				267CF4B92295E02A00FFB66A /* NewsFeedVCExtension.swift in Sources */,
 				267CF48C2295D4F300FFB66A /* NewsFeedVC.swift in Sources */,
 				267CF4B72295DE0900FFB66A /* NewsFeedVM.swift in Sources */,
-				262AE7FE229AD30600104BDB /* ParseOperation.swift in Sources */,
 				26D883D52298920C0074EB3D /* DataStorageProtocol.swift in Sources */,
 				267CF4B32295DB0000FFB66A /* NetworkingServiceProtocol.swift in Sources */,
 				26D883CF229890930074EB3D /* News.swift in Sources */,

@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     private let networkService = NetworkService()
     private let dataStorageService = DataStorageService()
+    private let parseService = ParseService()
 
     // MARK: - Application lifecicle methods
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -23,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = #colorLiteral(red: 0.9643666148, green: 0.9724945426, blue: 0.9806874394, alpha: 1)
         window?.makeKeyAndVisible()
         
-        let newsFeedViewModel = NewsFeedVM(networkService: networkService, dataStorageService: dataStorageService)
+        let newsFeedViewModel = NewsFeedVM(networkService: networkService, dataStorageService: dataStorageService, parserService: parseService)
         let newsFeedVC = NewsFeedVC(viewModel: newsFeedViewModel)
         
         window?.rootViewController = UINavigationController(rootViewController: newsFeedVC)

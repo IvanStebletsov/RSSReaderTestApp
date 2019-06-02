@@ -17,4 +17,9 @@ protocol DataStorage {
     func dataFor(_ indexPath: IndexPath) -> News
     
     func resetData()
+    
+    func cacheImage(data: Data, for key: String)
+    
+    func retrieveImageFromCache(for key: String) -> Data?
+    
 }

@@ -13,14 +13,16 @@ class NewsFeedVM: NewsFeedVMProtocol {
     //MARK: - Properties
     var networkService: Networking!
     var dataStorage: DataStorage!
+    var parser: DataParser!
     let urls = ["https://www.gazeta.ru/export/rss/lenta.xml", "http://lenta.ru/rss"]
     var fetchedNews = [News]()
     let operationQueue = OperationQueue()
     
     // MARK: - Initialization
-    init(networkService: Networking, dataStorageService: DataStorage) {
+    init(networkService: Networking, dataStorageService: DataStorage, parserService: DataParser) {
         self.networkService = networkService
         self.dataStorage = dataStorageService
+        self.parser = parserService
     }
     
     // MARK: - NewsFeedVMProtocol methods
@@ -32,22 +34,21 @@ class NewsFeedVM: NewsFeedVMProtocol {
         fetchedNews.removeAll()
         
         for url in urls {
-            let fetchOperation = FetchOperation(url: url, networkService: self.networkService)
+            let fetchOperation = FetchOperation(url: url, networkService: networkService)
             fetchOperation.completionBlock = { [weak self] in
                 guard let self = self, let result = fetchOperation.result?.0 else { return }
                 switch result {
                 case .success(let data):
-                    let parseOperation = ParseOperation(data: data)
-                    parseOperation.completionBlock = {
-                        self.fetchedNews += parseOperation.news
+                    self.parser.parseNews(from: data, completion: { (news) in
+                        self.fetchedNews += news
                         self.dataStorage.saveData(self.fetchedNews)
                         completion(nil)
-                    }
-                    sleep(1)
-                    self.operationQueue.addOperation(parseOperation)
+                    })
                 case .failure(.network):
+                    print(result)
                     completion(DataResponseError.network)
                 case .failure(.connection):
+                    print(result)
                     completion(DataResponseError.connection)
                 }
             }
@@ -56,7 +57,7 @@ class NewsFeedVM: NewsFeedVMProtocol {
     }
     
     func viewModelForCell(at indexPath: IndexPath) -> NewsTVCellVM {
-        return NewsTVCellVM(news: dataStorage.dataFor(indexPath), networkService: networkService)
+        return NewsTVCellVM(news: dataStorage.dataFor(indexPath), networkService: networkService, dataStorage: dataStorage)
     }
     
 }

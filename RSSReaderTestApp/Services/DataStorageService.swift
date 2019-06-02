@@ -10,6 +10,8 @@ import Foundation
 
 class DataStorageService: DataStorage {
     
+    let imageCache = NSCache<AnyObject, AnyObject>()
+    
     private var data = [News]() {
         didSet {
             data = data.sorted(by: { (news1, news2) -> Bool in news1.pubDate > news2.pubDate })
@@ -30,6 +32,16 @@ class DataStorageService: DataStorage {
     
     func resetData() {
         data.removeAll()
+    }
+    
+    func cacheImage(data: Data, for key: String) {
+        let key = key as AnyObject
+        imageCache.setObject(data as AnyObject, forKey: key)
+    }
+    
+    func retrieveImageFromCache(for key: String) -> Data? {
+        let key = key as AnyObject
+        return imageCache.object(forKey: key) as? Data
     }
     
 }

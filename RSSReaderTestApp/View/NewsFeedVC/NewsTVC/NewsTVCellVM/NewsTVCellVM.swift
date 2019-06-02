@@ -6,18 +6,21 @@
 //  Copyright © 2019 Ivan Stebletsov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class NewsTVCellVM: NewsTVCellVMProtocol {
     
     // MARK: - Properties
     var news: News
     var networkService: Networking!
+    var dataStorage: DataStorage!
+    let imageCache = NSCache<AnyObject, AnyObject>()
     
     // MARK: - Initialization
-    init(news: News, networkService: Networking!) {
+    init(news: News, networkService: Networking!, dataStorage: DataStorage) {
         self.news = news
         self.networkService = networkService
+        self.dataStorage = dataStorage
     }
 
     // MARK: - NewsTVCellVMProtocol methods
@@ -26,9 +29,15 @@ class NewsTVCellVM: NewsTVCellVMProtocol {
     }
     
     func newsImage(_ completion: @escaping (Data?) -> ()) {
+        if let imageFromCache = self.dataStorage.retrieveImageFromCache(for: self.news.imageUrl) {
+            completion(imageFromCache)
+            return
+        }
+        
         networkService.fetchData(from: news.imageUrl) { (result, response) in
             switch result {
             case .success(let data):
+                self.dataStorage.cacheImage(data: data, for: self.news.imageUrl)
                 completion(data)
             case .failure(.network):
                 print(DataResponseError.network)

@@ -109,7 +109,7 @@ extension NewsFeedVC {
             DispatchQueue.main.async {
                 if let response = response {
                     self.presentAlertController(response)
-                    self.emptyFeedView.isHidden = false
+                    self.emptyFeedView.isHidden = true
                 } else {
                     self.newsFeedTableView.reloadData()
                     self.emptyFeedView.isHidden = true
@@ -125,7 +125,8 @@ extension NewsFeedVC {
         alertController.addAction(okAlertAction)
         
         DispatchQueue.main.async { [weak self] in
-            self?.present(alertController, animated: true, completion: nil)
+            self?.present(alertController, animated: true)
+            self?.refreshControl.endRefreshing()
         }
     }
     

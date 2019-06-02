@@ -18,9 +18,12 @@ class NetworkService: Networking {
         let session = URLSession.shared
         
         session.dataTask(with: url) { (data, response, error) in
-            if error != nil { completion(Result.failure(.connection), nil) }
+            if error != nil { completion(Result.failure(.connection), nil); print(error!.localizedDescription) }
             
             guard let httpResponse = response as? HTTPURLResponse, let data = data else { return }
+            
+            print(httpResponse.statusCode)
+            print(data)
             
             guard httpResponse.hasSuccessStatusCode else { completion(Result.failure(.network), response); return }
             
