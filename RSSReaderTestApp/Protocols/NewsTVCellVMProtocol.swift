@@ -6,13 +6,15 @@
 //  Copyright © 2019 Ivan Stebletsov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol NewsTVCellVMProtocol {
     
     func publisher() -> String
     
     func newsImage(_ completion: @escaping (Data?) -> ())
+    
+    func imageUrl() -> String
     
     func pubTime() -> String
     

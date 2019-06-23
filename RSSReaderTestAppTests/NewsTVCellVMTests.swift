@@ -13,12 +13,14 @@ class NewsTVCellVMTests: XCTestCase {
     
     private var newsTVCellVM: NewsTVCellVMProtocol!
     private var networkService: Networking!
+    private var dataStorage: DataStorage!
     private var news: News!
     
     override func setUp() {
         networkService = NetworkService()
+        dataStorage = DataStorageService()
         news = News(title: "Title", description: "News description", pubDate: Date(), imageUrl: "http://icdn.lenta.ru/images/2019/05/24/19/20190524192919522/pic_f095fede71102c74afcfc56664d0e67c.jpg")
-        newsTVCellVM = NewsTVCellVM(news: news, networkService: networkService)
+        newsTVCellVM = NewsTVCellVM(news: news, networkService: networkService, dataStorage: dataStorage)
         
     }
     

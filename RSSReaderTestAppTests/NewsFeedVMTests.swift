@@ -14,11 +14,14 @@ class NewsFeedVMTests: XCTestCase {
     private var newsFeedVM: NewsFeedVMProtocol!
     private var networkService: Networking!
     private var dataStorageService: DataStorageService!
+    private var dataParser: DataParser!
 
     override func setUp() {
         networkService = NetworkService()
         dataStorageService = DataStorageService()
-        newsFeedVM = NewsFeedVM(networkService: networkService, dataStorageService: dataStorageService)
+        dataParser = ParseService()
+        
+        newsFeedVM = NewsFeedVM(networkService: networkService, dataStorageService: dataStorageService, parserService: dataParser)
     }
     
     override func tearDown() {

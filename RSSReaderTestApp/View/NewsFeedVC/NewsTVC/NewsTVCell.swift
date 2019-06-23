@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NewsTVCell: UITableViewCell {
     
@@ -52,15 +53,9 @@ class NewsTVCell: UITableViewCell {
         newsTitleLabel.text = viewModel.title()
         newsDescriptionLabel.text = viewModel.description()
         
-        viewModel.newsImage { [weak self] (data) in
-            guard let self = self, let data = data else { return }
-            DispatchQueue.global(qos: .userInitiated).async {
-                guard let image = UIImage(data: data) else { return }
-                DispatchQueue.main.async {
-                    self.newsImageView.image = image
-                }
-            }
-        }
+        guard let url = URL(string: viewModel.imageUrl()) else { return }
+        newsImageView.kf.indicatorType = .activity
+        newsImageView.kf.setImage(with: url)
     }
     
     override func prepareForReuse() {

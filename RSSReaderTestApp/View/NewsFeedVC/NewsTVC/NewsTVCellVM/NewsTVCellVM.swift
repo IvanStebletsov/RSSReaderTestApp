@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NewsTVCellVM: NewsTVCellVMProtocol {
     
@@ -26,6 +27,10 @@ class NewsTVCellVM: NewsTVCellVMProtocol {
     // MARK: - NewsTVCellVMProtocol methods
     func publisher() -> String {
         return news.publisher
+    }
+    
+    func imageUrl() -> String {
+        return news.imageUrl
     }
     
     func newsImage(_ completion: @escaping (Data?) -> ()) {
